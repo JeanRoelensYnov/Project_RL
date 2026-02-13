@@ -4,7 +4,14 @@ from PPO import PPO
 env = CarlaEnv()
 
 try:
-    ppo = PPO(env, lr=1e-4, n_steps=2048)
-    ppo.learn(total_timesteps=1_000_000)  
+    env = CarlaGymEnv()
+    train(env)
+
+    DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+    agent = DQN.DQNAgent(
+        observation_space=env.observation_space,
+        action_space=env.action_space,
+        device=DEVICE
+    )
 finally:
     env.close()
