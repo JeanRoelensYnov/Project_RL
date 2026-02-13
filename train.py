@@ -1,5 +1,4 @@
-from carla_env import CarlaEnv
-from PPO import PPO
+from carla_env import *
 
 env = CarlaEnv()
 
